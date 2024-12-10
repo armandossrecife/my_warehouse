@@ -1,4 +1,4 @@
 ID_Fornecedor,Nome,CNPJ,Contato,Endereço,Qualificação
-1,FornecedorA,12345678901234,contato@fornecedorA.com,Rua dos Fornecedores,123,Aprovado
-2,FornecedorB,98765432109876,contato@fornecedorB.com,Avenida dos Fornecedores,456,Aprovado
-3,FornecedorC,56789012345678,contato@fornecedorC.com,Rua das Indústrias,789,Em análise
+1,FornecedorA,12345678901234,contato@fornecedorA.com,Rua dos Fornecedores - 123,Aprovado
+2,FornecedorB,98765432109876,contato@fornecedorB.com,Avenida dos Fornecedores - 456,Aprovado
+3,FornecedorC,56789012345678,contato@fornecedorC.com,Rua das Indústrias - 789,Em análise
