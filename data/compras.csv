@@ -1,0 +1,4 @@
+ID_Compra,Data_da_compra,Fornecedor,Valor_total,Forma_de_pagamento,Nota_fiscal
+1,2024-01-15,FornecedorA,1500.00,Boleto,123456
+2,2024-02-10,FornecedorB,800.00,Cartão de crédito,789012
+3,2024-03-05,FornecedorC,2500.00,Transferência bancária,345678
