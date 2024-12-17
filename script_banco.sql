@@ -1,3 +1,4 @@
+-- Cria a tabela Produtos
 CREATE TABLE Produtos (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     descricao TEXT,
@@ -12,6 +13,7 @@ CREATE TABLE Produtos (
     FOREIGN KEY(fornecedor) REFERENCES Fornecedores(id)
 );
 
+-- Cria a tabela Fornecedores
 CREATE TABLE Fornecedores (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
@@ -21,6 +23,7 @@ CREATE TABLE Fornecedores (
     qualificacao TEXT
 );
 
+-- Cria a tabela Compras
 CREATE TABLE Compras (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     data_compra DATE,
@@ -31,6 +34,7 @@ CREATE TABLE Compras (
     FOREIGN KEY(Fornecedor) REFERENCES Fornecedores(id)
 );
 
+-- Cria a tabela itens de compra
 CREATE TABLE Itens_Compra (
     id_item INTEGER PRIMARY KEY AUTOINCREMENT,
     compra INTEGER,
@@ -42,6 +46,7 @@ CREATE TABLE Itens_Compra (
     FOREIGN KEY(produto) REFERENCES Produtos(id)
 );
 
+-- Cria a tabela consumo interno
 CREATE TABLE Consumo_Interno (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     data_consumo DATE,
@@ -52,6 +57,7 @@ CREATE TABLE Consumo_Interno (
     FOREIGN KEY(produto) REFERENCES Produtos(id)
 );
 
+-- Cria a tabela sugestoes de compra
 CREATE TABLE Sugestoes_Compra (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     produto INTEGER,
