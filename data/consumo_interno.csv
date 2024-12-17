@@ -1,4 +1,4 @@
-ID_Consumo,Data_do_consumo,Produto,Quantidade,Setor_solicitante,Observações
+id,data_consumo,produto,quantidade,setor_solicitante,observacoes
 1,2024-01-20,1,50,Laboratório Clínico,Para realização de exames
 2,2024-02-15,2,2,Pesquisa,Experimento A
 3,2024-03-10,3,10,Patologia,Análise de amostras

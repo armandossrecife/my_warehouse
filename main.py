@@ -1,8 +1,39 @@
 import pandas as pd
 import os
+import sqlite3
+
+def criar_banco(my_script, nome_banco='almoxarifado.db'):
+    """
+    Cria o banco de dados 'almoxarifado.db' e as tabelas especificadas.
+    Args:
+        None
+    Returns:
+        None
+    """
+    conn = None
+    try:
+        conn = sqlite3.connect(nome_banco)        
+        with open(my_script, mode='r') as sql_file:
+            sql_script = sql_file.read()
+        # Cria um cursor para executar os comandos SQL
+        cursor = conn.cursor()
+        # Executa os comandos SQL para criar as tabelas
+        cursor.executescript(sql_script)
+        # Confirma as alterações no banco de dados
+        conn.commit()
+        print("Tabelas criadas com sucesso!")
+    except sqlite3.Error as error:
+        print(f"Erro ao criar as tabelas: {error}")
+    finally:
+        if conn:
+            conn.close()
 
 def get_script_dir(path):
     return os.path.dirname(os.path.abspath(path))
+
+print("Criando o banco...")
+criar_banco(my_script='script_banco.sql')
+print("Banco criado com sucesso!")
 
 # Assuming this script is in the main directory
 main_dir = get_script_dir(__file__)

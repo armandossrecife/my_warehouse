@@ -1,4 +1,4 @@
-ID_Produto,Descrição,Unidade_de_medida,Fabricante,Fornecedor,Valor_unitário,Estoque_mínimo,Estoque_máximo,Localização,Data_de_validade
+id,descricao,unidade_medida,fabricante,fornecedor,valor_unitario,estoque_minimo,estoque_maximo,localizacao,data_validade
 1,Tubos de ensaio,unidade,Corning,FornecedorA,2.50,100,500,Prateleira1,2024-12-31
 2,Reagente A,litro,Sigma-Aldrich,FornecedorB,150.00,5,20,Geladeira2,2025-06-30
 3,Lâminas de microscopia,caixa,Marienfeld,FornecedorA,80.00,20,100,Armário3,2025-03-31
