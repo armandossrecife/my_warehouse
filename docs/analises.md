@@ -51,6 +51,53 @@ INNER JOIN Lotes l ON i.loteId = l.loteId
 WHERE l.loteValidade BETWEEN date('now') AND date('now', '+30 days');
 ```
 
+* **Consulta que fornecerá um resumo da quantidade total recebida de cada item de cada fabricante.**
+```sql
+SELECT 
+    i.itemDescricao, 
+    f.FabricanteDescricao,
+    SUM(i.loteQuantidade) AS quantidade_total
+FROM 
+    Itens i
+INNER JOIN 
+    Fabricantes f ON i.fabricanteId = f.id
+WHERE 
+    i.tipo = 'E' 
+GROUP BY 
+    i.itemDescricao, f.FabricanteDescricao;
+```
+
+* **Para identificar os itens mais comprados, precisamos somar a quantidade de cada item em todas as movimentações.**
+```sql
+SELECT 
+    i.itemDescricao, 
+    SUM(i.loteQuantidade) AS quantidade_total
+FROM 
+    Itens i
+GROUP BY 
+    i.itemDescricao
+ORDER BY 
+    quantidade_total DESC;
+```
+
+* **Identificando os Fabricantes com Mais Itens Comprados**
+
+Queremos descobrir quais fabricantes fornecem a maior quantidade de itens para o laboratório. Para isso, vamos agrupar os itens por fabricante e somar a quantidade de cada item fornecido por cada um.
+
+```sql
+SELECT 
+    f.FabricanteDescricao,
+    SUM(i.loteQuantidade) AS quantidade_total
+FROM 
+    Itens i
+INNER JOIN 
+    Fabricantes f ON i.fabricanteId = f.id
+GROUP BY 
+    f.FabricanteDescricao
+ORDER BY 
+    quantidade_total DESC;
+```
+
 **Ferramentas para Análise:**
 
 * **SQL:** Para extrair os dados do banco de dados.
