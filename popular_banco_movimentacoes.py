@@ -42,17 +42,43 @@ def extrai_dados_lotes(df_movimentacoes):
     return df_lotes
 
 def extrai_dados_itens_movimentacoes(df_movimentacoes):
-    colunas_uteis = ["itemId","itemDescricao","tipo","tipoItem","especificacao","loteQuantidade","data","precoMedio","valorTotal"]
+    colunas_uteis = ["itemId","itemDescricao","tipo","tipoItem","especificacao","loteQuantidade","data","precoMedio","valorTotal", "usuarioId", "LoteId", "fabricanteId"]
     df_itens_movimentacoes = df_movimentacoes[colunas_uteis]
     return df_itens_movimentacoes
 
+def add_user_to_movimentacoes(df_users, df_movimentacoes):
+    # Merge df_movimentacoes with df_users to add 'usuarioId' to df_movimentacoes
+	# First, extract just the user_id from the original user column
+    df_movimentacoes['temp_usuarioId'] = df_movimentacoes['usuarioId'].apply(lambda x: utilidades.extract_user_info(x)[0] if utilidades.extract_user_info(x) else None)
+	#Merge the dataframes using the temporary user_id
+    df_movimentacoes = pd.merge(df_movimentacoes, df_users, left_on='temp_usuarioId', right_on='usuarioId', how='left', suffixes=('', '_y'))
+	#Drop the temporary user id
+    df_movimentacoes.drop('temp_usuarioId', axis=1, inplace=True)
+	# Drop any redundant columns added by the merge operation (if any)
+    df_movimentacoes.drop(columns=[col for col in df_movimentacoes.columns if col.endswith('_y')], inplace=True)
+    return df_movimentacoes
+
+def add_fabricanteid_to_movimentacoes(df_fabricantes, df_movimentacoes):
+    # Create a mapping from 'FabricanteDescricao' to 'id' from df_fabricantes
+    fabricante_mapping = df_fabricantes['FabricanteDescricao'].to_dict()
+    fabricante_id_mapping = {v: k for k, v in fabricante_mapping.items()}
+
+    # Add 'fabricanteId' to df_movimentacoes based on 'FabricanteDescricao'
+    df_movimentacoes['fabricanteId'] = df_movimentacoes['FabricanteDescricao'].map(fabricante_id_mapping)
+    return df_movimentacoes
+
 def get_dataframes():
     df_movimentacoes = carrega_dados_movimentacoes()
-    df_itens = carrega_dados_itens(df_movimentacoes)
     df_users = extrai_dados_usuarios(df_movimentacoes)
+    df_movimentacoes = add_user_to_movimentacoes(df_users, df_movimentacoes)
+    
     df_fabricantes = extrai_dados_fabricantes(df_movimentacoes)
+    df_movimentacoes = add_fabricanteid_to_movimentacoes(df_fabricantes, df_movimentacoes)
+
     df_lotes = extrai_dados_lotes(df_movimentacoes)
     df_itens_movimentacoes = extrai_dados_itens_movimentacoes(df_movimentacoes)
+
+    df_itens = carrega_dados_itens(df_movimentacoes)
     return df_movimentacoes, df_itens, df_users, df_fabricantes, df_lotes, df_itens_movimentacoes
 
 def insere_dados_banco(df, nome_tabela,string_banco='databases/movimentacoes.db'):
@@ -68,3 +94,4 @@ df_movimentacoes, df_itens, df_users, df_fabricantes, df_lotes, df_itens_movimen
 insere_dados_banco(df_users, 'Usuarios')
 insere_dados_banco(df_fabricantes, 'Fabricantes')
 insere_dados_banco(df_lotes, 'Lotes')
+insere_dados_banco(df_itens_movimentacoes, 'Itens')
