@@ -31,4 +31,4 @@ def criar_banco_movimentacoes(script, nome_banco):
         print(f"Erro ao criar o banco: {str(ex)}")
     print("Banco criado com sucesso!")
 
-# criar_banco_movimentacoes(script='script_movimentacoes.sql', nome_banco='movimentacoes.db')
+criar_banco_movimentacoes(script='scripts/script_movimentacoes.sql', nome_banco='movimentacoes.db')

@@ -221,3 +221,18 @@ def extrair_dados_informacao_agrupadores(arquivo_json):
     except Exception as ex:
         print(f"Erro: {checa_valor(ex)}")
     return df
+
+
+def extract_user_info(user_str):
+    """
+    Extracts user ID and name from a string in the format "0399 - FRANCISCO DAS".
+    Args:
+        user_str: The string containing user ID and name.
+    Returns:
+        tuple: A tuple containing (user_id, user_name).
+    """
+    try:
+        user_id, user_name = user_str.split(" - ")
+        return user_id, user_name
+    except ValueError:
+        return None, None
