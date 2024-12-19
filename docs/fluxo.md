@@ -20,3 +20,12 @@
 
 ## 4. Análise dos Dados
 
+### 4.1 Geral
+- Itens próximos da validade (30 dias)
+- quantidade total recebida de cada item de cada fabricante.
+- itens mais comprados
+- Fabricantes com Mais Itens Comprados
+
+### 4.2 Itens mais comprados por mês
+
+### 4.3 Itens mais consumidos por mês
