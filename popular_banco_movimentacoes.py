@@ -38,6 +38,7 @@ def extrai_dados_fabricantes(df_movimentacoes):
 
 def extrai_dados_lotes(df_movimentacoes):
     df_lotes = df_movimentacoes[['LoteId',	'LoteValidade']]
+    df_lotes['LoteValidade'] = pd.to_datetime(df_lotes['LoteValidade'], format='%d/%m/%Y', errors='coerce')
     df_lotes.drop_duplicates(inplace=True)
     return df_lotes
 
@@ -69,6 +70,8 @@ def add_fabricanteid_to_movimentacoes(df_fabricantes, df_movimentacoes):
 
 def get_dataframes():
     df_movimentacoes = carrega_dados_movimentacoes()
+    df_movimentacoes['data'] = pd.to_datetime(df_movimentacoes['data'], format='%d/%m/%Y')
+    
     df_users = extrai_dados_usuarios(df_movimentacoes)
     df_movimentacoes = add_user_to_movimentacoes(df_users, df_movimentacoes)
     

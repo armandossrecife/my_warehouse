@@ -222,7 +222,6 @@ def extrair_dados_informacao_agrupadores(arquivo_json):
         print(f"Erro: {checa_valor(ex)}")
     return df
 
-
 def extract_user_info(user_str):
     """
     Extracts user ID and name from a string in the format "0399 - FRANCISCO DAS".
