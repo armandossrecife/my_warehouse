@@ -28,4 +28,12 @@
 
 ### 4.2 Itens mais comprados por mês
 
+* **4.2.1 Projeção de compras**
+
+Baseado no histórico de compras
+
 ### 4.3 Itens mais consumidos por mês
+
+* **4.3.1 Projeção de consumo**
+
+Baseado no histórico de consumo
