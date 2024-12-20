@@ -24,7 +24,7 @@
 - Itens próximos da validade (30 dias)
 - quantidade total recebida de cada item de cada fabricante.
 - itens mais comprados
-- Fabricantes com Mais Itens Comprados
+- Fabricantes com mais Itens Comprados
 
 ### 4.2 Itens mais comprados por mês
 
