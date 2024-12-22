@@ -16,6 +16,7 @@ My Warehouse: uma aplicação para apoiar na tomada de decisão na gestão de al
 ## Estrutura do Banco de Dados
 
 [Banco de Dados](docs/estrutura.md)
+[Movimentações](docs/estrutura_movimentacoes.md)
 
 ## Fluxo de Trabalho
 
